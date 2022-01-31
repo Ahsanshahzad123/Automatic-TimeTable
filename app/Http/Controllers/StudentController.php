@@ -34,12 +34,22 @@ class StudentController extends Controller
         else{
             foreach ($user->courses as $users)
             {
-                $from = $users->from;
-                $to = $users->to;
-                if($from<=$course->from || $course->from <= $to | $from<=$course->to ||  $course->to<= $to )
+                $start = $users->from;
+                $end = $users->to;
+                // if($from<=$course->from || $course->from <= $to || $from<=$course->to ||  $course->to<= $to )
+                if(($course->from >= $start )&& ($course->from<= $end) )
                 {
+                    if(($course->to >= $start )&& ($course->to<= $end) )
+                    {
+                        $check = true;
+                        return redirect()->back()->with('message', 'Time Slot has already course!');
+                    }
                     $check = true;
-                    return redirect()->back()->with('message', 'Time Slot has already course!');
+                        return redirect()->back()->with('message', 'Time Slot has already course!');
+                  
+                }
+                else{
+                    $check = false;
                 }
             }
             if(!$check)

@@ -59,7 +59,7 @@
            <table class="table mt-4">
              <thead>
                <tr>
-                 <th scope="col">Courses Name</th>
+                 <th scope="col">Days</th>
                  <th scope="col">Class Hours</th>
                  <th scope="col">Time From</th>
                  <th scope="col">Time To</th>

@@ -14,6 +14,7 @@ class StudentController extends Controller
     {
         $course = Course::latest()->get();
         $user = User::find(auth()->user()->id);
+
         //return $user->courses->name;
         if(auth()->user()->roles()->first()->name == "Student") {
             return view('student.student',compact('course','user'));
@@ -35,11 +36,10 @@ class StudentController extends Controller
             foreach ($user->courses as $users)
             {
                 $start = $users->from;
-                $end = $users->to;
-                // if($from<=$course->from || $course->from <= $to || $from<=$course->to ||  $course->to<= $to )
-                if(($course->from >= $start )&& ($course->from<= $end) )
+                $end = $users->to;// if($from<=$course->from || $course->from <= $to || $from<=$course->to ||  $course->to<= $to )
+                if(($course->from >= $start )&& ($course->from<= $end) &&($users->day == $course->day) )
                 {
-                    if(($course->to >= $start )&& ($course->to<= $end) )
+                    if(($course->to >= $start )&& ($course->to<= $end) &&($users->day == $course->day) )
                     {
                         $check = true;
                         return redirect()->back()->with('message', 'Time Slot has already course!');
